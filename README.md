@@ -25,10 +25,22 @@ An AI-powered agent that combines Amazon product search (via FAISS vector store)
 ```bash
 # macOS with Homebrew
 brew install --cask miniconda
+```
 
-# Initialize conda in your shell (only needed once)
-conda init zsh  # or bash
-source ~/.zshrc  # or open a new terminal
+Initialize conda in your shell (only needed once):
+
+**For Zsh (default on macOS):**
+```bash
+conda init zsh
+source ~/.zshrc
+```
+
+**For Bash:**
+```bash
+conda init bash
+source ~/.bashrc
+# Or on macOS, you may need:
+source ~/.bash_profile
 ```
 
 ### 2. Create Conda Environment
@@ -172,15 +184,32 @@ vector = FAISS.load_local(
 
 If `conda activate` doesn't work after installation:
 
+**For Zsh:**
 ```bash
-# Initialize conda in your shell
-conda init zsh  # or bash
-
-# Then either:
-source ~/.zshrc  # Source the updated config
-# OR
-# Open a new terminal window
+conda init zsh
+source ~/.zshrc
 ```
+
+**For Bash:**
+```bash
+conda init bash
+source ~/.bashrc
+# On macOS, bash may use ~/.bash_profile instead:
+source ~/.bash_profile
+```
+
+**Alternative (manual activation without conda init):**
+```bash
+# For Zsh
+source /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh
+conda activate agent_env
+
+# For Bash (same command)
+source /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh
+conda activate agent_env
+```
+
+**Note:** After running `conda init`, open a new terminal or source your shell config file.
 
 ## API Keys
 
