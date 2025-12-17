@@ -75,10 +75,18 @@ source ~/.bash_profile  # or ~/.zshrc
 
 ## Usage
 
+**Important:** Source your shell profile BEFORE activating conda (the profile may reset conda to base).
+
 ### Run Gradio Web Interface (default)
 
 ```bash
+# 1. Source profile first (for API keys)
+source ~/.bash_profile  # or ~/.bashrc or ~/.zshrc
+
+# 2. Then activate conda environment
 conda activate agent_env
+
+# 3. Run the agent
 python agent.py
 # or explicitly:
 python agent.py --gradio
@@ -89,6 +97,7 @@ Opens a web UI at `http://localhost:7860` with a shareable public link.
 ### Run Automated Tests
 
 ```bash
+source ~/.bash_profile  # Load API keys first
 conda activate agent_env
 python agent.py --test
 ```
