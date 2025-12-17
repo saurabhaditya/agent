@@ -3,11 +3,11 @@ import os
 import sys
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain.tools.retriever import create_retriever_tool
+from langchain_core.tools.retriever import create_retriever_tool
 from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain import hub
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain.memory import ConversationSummaryMemory
+from langsmith import Client as LangSmithClient
+from langchain_classic.agents import AgentExecutor, create_react_agent
+from langchain_classic.memory import ConversationSummaryMemory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
@@ -50,8 +50,9 @@ search_tool = TavilySearchResults(
     include_raw_content=True,
 )
 
-# Pull the ReAct prompt from LangChain Hub
-prompt = hub.pull("hwchase17/react")
+# Pull the ReAct prompt from LangSmith Hub
+langsmith_client = LangSmithClient()
+prompt = langsmith_client.pull_prompt("hwchase17/react")
 
 # Create a list of tools
 tools = [retriever_tool, search_tool]
